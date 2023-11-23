@@ -5,7 +5,7 @@ import { tezos } from "./tezos";
 export const buyTicketOperation = async () => {
   try {
     const contract = await tezos.wallet.at(
-      "KT1Qv5wVgps3xCsPtTq8vmDB5niKisB37Bog"
+      "KT1TRHqoWYzzdMB4J3TquqxLCVU9oG5b5HS9"
     );
     const op = await contract.methods.buy_ticket().send({
       amount: 2,

@@ -9,7 +9,7 @@ import { fetchStorage } from "./utils/tzkt";
 
 const App = () => {
 
-  const [players, setPlayers] = useState([]);
+  const [p, setP] = useState([]);
   const [tickets, setTickets] = useState(3);
   const [loading, setLoading] = useState(false);
 
@@ -18,13 +18,13 @@ const App = () => {
 
     (async () => {
       const storage = await fetchStorage();
-      setPlayers(Object.values(storage.players));
+      setP(Object.values(storage.p));
       setTickets(storage.tickets_available);
     })();
   }, []);
 
 
-  const onBuyTicket = async () => {
+  const onBuy = async () => {
     try {
       setLoading(true);
       await buyTicketOperation();
@@ -37,7 +37,7 @@ const App = () => {
   };
 
 
-  const onEndGame = async () => {
+  const onEnd = async () => {
     try {
         setLoading(true);
         await endGameOperation();
@@ -62,13 +62,13 @@ const App = () => {
         <div className="py-1 text-white">Education {tickets}</div>
   
         {tickets > 0 ? (
-          <button onClick={onBuyTicket} className="btn btn-primary btn-lg text-white ">
+          <button onClick={onBuy} className="btn btn-primary btn-lg text-white ">
         
             {loading ? "Loading.." : "Scheduling"}
             
           </button>
         ) : (
-          <button onClick={onEndGame} className="btn btn-success btn-lg text-white">
+          <button onClick={onEnd} className="btn btn-success btn-lg text-white">
    
             {loading ? "Loading..." : "Education "}
             
@@ -76,7 +76,7 @@ const App = () => {
         )}
     
         <div className="mt-2 text-white">
-          {players.map((player, index) => (
+          {p.map((player, index) => (
             <div key={index}>
               <b>C {index + 1}:</b> {player}
             </div>
